@@ -1,0 +1,98 @@
+{
+  "name": "@folio/data-export",
+  "version": "1.0.2",
+  "description": "Data export manager",
+  "main": "src/index.js",
+  "repository": "folio-org/ui-data-export",
+  "publishConfig": {
+    "registry": "https://repository.folio.org/repository/npm-folio/"
+  },
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "scripts": {
+    "start": "stripes serve",
+    "build": "stripes build --output ./output",
+    "lint": "eslint .",
+    "lintfix": "eslint . --fix",
+    "test": "stripes test karma",
+    "test-coverage": "stripes test karma --coverage"
+  },
+  "devDependencies": {
+    "@bigtest/interactor": "^0.7.2",
+    "@bigtest/mirage": "^0.0.1",
+    "@bigtest/mocha": "^0.5.2",
+    "@bigtest/react": "^0.1.2",
+    "@folio/eslint-config-stripes": "^5.0.0",
+    "@folio/stripes-core": "^4.0.0",
+    "@folio/stripes-cli": "^1.11.0",
+    "@folio/stripes-smart-components": "^3.0.0",
+    "@folio/stripes": "^3.0.0",
+    "@folio/stripes-data-transfer-components": "^1.0.0",
+    "babel-eslint": "^9.0.0",
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0",
+    "eslint": "^6.2.1",
+    "eslint-plugin-babel": "^5.3.0",
+    "react": "^16.5.0",
+    "react-dom": "^16.5.0",
+    "regenerator-runtime": "^0.13.3",
+    "core-js": "^3.6.1"
+  },
+  "dependencies": {
+    "classnames": "^2.2.5",
+    "lodash": "^4.16.4",
+    "prop-types": "^15.6.0",
+    "react-intl": "^2.9.0",
+    "redux-form": "^7.0.3",
+    "react-router-prop-types": "^1.0.4"
+  },
+  "peerDependencies": {
+    "@folio/stripes": "^3.0.0",
+    "react": "*",
+    "react-router": "*",
+    "react-router-dom": "*"
+  },
+  "resolutions": {
+    "moment": "2.24.0"
+  },
+  "stripes": {
+    "actsAs": ["app", "settings"],
+    "displayName": "ui-data-export.meta.title",
+    "route": "/data-export",
+    "queryResource": "query",
+    "icons": [
+      {
+        "name": "app",
+        "alt": "Data export loader for MARC records",
+        "title": "Data export"
+      }
+    ],
+    "okapiInterfaces": {
+      "data-export": "1.0"
+    },
+    "permissionSets": [
+      {
+        "permissionName": "module.data-export.enabled",
+        "displayName": "UI: Data export module is enabled",
+        "subPermissions": [
+          "data-export.file-definitions.item.post",
+          "data-export.file-definitions.upload.post",
+          "data-export.export.post",
+          "data-export.job-executions.items.get",
+          "data-export.job-executions.items.download.get"
+        ],
+        "visible": true
+      },
+      {
+        "permissionName": "settings.data-export.enabled",
+        "displayName": "Settings (data-export): display list of settings pages",
+        "subPermissions": [
+          "settings.enabled"
+        ],
+        "visible": true
+      }
+    ]
+  }
+}
